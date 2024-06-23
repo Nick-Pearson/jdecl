@@ -1,6 +1,10 @@
 # Compiled files
 /target/
 /pkg/
+/dist/
+
+# JS dependencies
+/node_modules/
 
 # Dependency directories
 Cargo.lock

@@ -7,7 +7,7 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
-# Add your dependencies here
+wasm-bindgen = "0.2.92"
 
 [build-dependencies]
-wasm-pack = "0.10.0"
+wasm-pack = "0.12.1"
