@@ -1,0 +1,13 @@
+[package]
+name = "jdecl"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# Add your dependencies here
+
+[build-dependencies]
+wasm-pack = "0.10.0"
