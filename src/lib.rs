@@ -3,12 +3,40 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 pub fn explain(input: &str) -> String {
     match parse(input) {
-        Ok(parsed) => {
-            format!("{:?}", parsed)
-        },
+        Ok(parsed) => parsed.iter()
+            .rev()
+            .map(explain_location)
+            .collect::<Vec<String>>()
+            .join(", "),
         Err(_) => {
             "Invalid input".to_string()
         }
+    }
+}
+
+fn explain_location(location: &LocationKind) -> String {
+    match location {
+        LocationKind::Package { name } => {
+            format!("in package {}", name)
+        },
+        LocationKind::Class { name } => {
+            format!("part of class {}", name)
+        },
+        LocationKind::Method { name } => {
+            format!("inside method {}", name)
+        },
+        LocationKind::Lambda { name, id } => {
+            format!("The {} lambda created inside method {}", nth(id), name)
+        },
+    }
+}
+
+fn nth(n: &u32) -> String {
+    match n {
+        1 => "1st".to_string(),
+        2 => "2nd".to_string(),
+        3 => "3rd".to_string(),
+        _ => format!("{}th", n),
     }
 }
 
