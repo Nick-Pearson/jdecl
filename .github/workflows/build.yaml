@@ -51,7 +51,7 @@ jobs:
         run: cargo clippy --tests -- -D warnings -A dead_code
   deploy:
     name: "Deploy to GitHub Pages"
-    needs: [wasm, test]
+    needs: [wasm, test, lint]
     if: github.ref == 'refs/heads/main'
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
