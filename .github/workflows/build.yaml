@@ -13,8 +13,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up cargo cache
+        uses: actions/cache@v3
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/            
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
       - name: Setup wasm-pack
-        run: cargo install wasm-pack
+        run: cargo install wasm-pack || true
       - name: wasm-pack build
         run: wasm-pack build
   test:
@@ -28,6 +40,7 @@ jobs:
       - name: Cargo test
         run: cargo test
   deploy:
+    name: "Deploy to GitHub Pages"
     needs: [wasm, test]
     if: github.ref == 'refs/heads/main'
     # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
