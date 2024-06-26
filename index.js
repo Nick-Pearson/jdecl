@@ -1,6 +1,6 @@
 import { explain } from './pkg';
+import './style.css';
 
-// add event on document ready
 function init() {
     console.log('init');
 

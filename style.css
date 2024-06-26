@@ -1,0 +1,11 @@
+input {
+    padding: 4px;
+    border-radius: 4px;
+    width: 60%;
+
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-size: 1.5em;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
