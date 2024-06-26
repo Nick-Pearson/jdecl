@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cargo install
-        run: cargo install
+      - name: Cargo build
+        run: cargo build
       - name: WASM build
         run: wasm-pack build
       - name: Cargo test
